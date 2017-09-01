@@ -8,7 +8,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authService: AuthService, private cdRef: ChangeDetectorRef) {
+  constructor(public authService: AuthService, private cdRef: ChangeDetectorRef) {
     this.authService.user.subscribe(() => {
       cdRef.detectChanges();
     });
