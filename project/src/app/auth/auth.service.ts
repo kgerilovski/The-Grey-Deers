@@ -1,12 +1,17 @@
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Injectable } from '@angular/core';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
 
-  constructor(private router: Router, private af: AngularFireAuth) { }
+  user: Observable<firebase.User>;
+
+  constructor(private router: Router, private af: AngularFireAuth) {
+    this.user = af.authState;
+  }
 
   signupUser(email: string, password: string) {
     this.af.auth.createUserWithEmailAndPassword(email, password)

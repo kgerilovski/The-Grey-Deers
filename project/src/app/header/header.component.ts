@@ -1,5 +1,5 @@
 import { AuthService } from './../auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
-  ngOnInit() { } onSignOut() { this.authService.logout(); }
+  constructor(private authService: AuthService, private cdRef: ChangeDetectorRef) {
+    this.authService.user.subscribe(() => {
+      cdRef.detectChanges();
+    });
+  }
+  ngOnInit() { }
 
-
+  onSignOut() {
+    this.authService.logout();
+  }
 }

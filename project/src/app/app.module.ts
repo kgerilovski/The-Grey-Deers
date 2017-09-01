@@ -14,18 +14,18 @@ import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './auth/auth-guard.service';
 
 const appRoutes: Routes = [
-  { path: "", component: HomeComponent },
-  { path: "signin", component: SigninComponent },
-  { path: "signup", component: SignupComponent }
+  { path: '', component: HomeComponent },
+  { path: 'signin', component: SigninComponent },
+  { path: 'signup', component: SignupComponent }
  ];
 
  export const firebaseConfig = {
-  apiKey: "AIzaSyDkcWWpfMP03vRrWJhl24MXG56grlXurRQ",
-  authDomain: "the-grey-deers.firebaseapp.com",
-  databaseURL: "https://the-grey-deers.firebaseio.com",
-  projectId: "the-grey-deers",
-  storageBucket: "the-grey-deers.appspot.com",
-  messagingSenderId: "114242608796"
+  apiKey: 'AIzaSyDkcWWpfMP03vRrWJhl24MXG56grlXurRQ',
+  authDomain: 'the-grey-deers.firebaseapp.com',
+  databaseURL: 'https://the-grey-deers.firebaseio.com',
+  projectId: 'the-grey-deers',
+  storageBucket: 'the-grey-deers.appspot.com',
+  messagingSenderId: '114242608796'
   };
 
 @NgModule({

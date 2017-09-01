@@ -14,21 +14,17 @@
         </ul>
 
 
-        <ul class="nav navbar-nav navbar-right">
-
+        <ul class="nav navbar-nav navbar-right" *ngIf="authService.isAuthenticated()">
             <li><a>{{ authService.getEmail() }}</a></li>
 
-
-            <li *ngIf="!authService.isAuthenticated()"><a routerLink="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-
-
-            <li *ngIf="!authService.isAuthenticated()"><a routerLink="/signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-
-
-            <li *ngIf="authService.isAuthenticated()"><a href=# (click)="onSignOut()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-
+            <li><a href=# (click)="onSignOut()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>
 
+        <ul class="nav navbar-nav navbar-right" *ngIf="!authService.isAuthenticated()">
+            <li><a routerLink="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+
+            <li><a routerLink="/signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
     </div>
 
 </nav>
