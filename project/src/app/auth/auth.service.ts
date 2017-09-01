@@ -11,11 +11,12 @@ export class AuthService {
   signupUser(email: string, password: string) {
     this.af.auth.createUserWithEmailAndPassword(email, password)
     .then((success) => {
-      let user: any = this.af.auth.currentUser;
+      const user: any = this.af.auth.currentUser;
       user.sendEmailVerification().then(
-        (success) => {
+        () => {
           alert('Please verify your email.');
-      })})
+      });
+    });
   }
 
   signinUser(email: string, password: string) {
@@ -27,7 +28,8 @@ export class AuthService {
         localStorage.setItem('token', token);
         localStorage.setItem('uid', this.af.auth.currentUser.uid);
         localStorage.setItem('email', this.af.auth.currentUser.email);
-      })})
+      });
+    });
   }
 
   signinGmail() {
@@ -39,7 +41,8 @@ export class AuthService {
         localStorage.setItem('token', token);
         localStorage.setItem('uid', this.af.auth.currentUser.uid);
         localStorage.setItem('email', this.af.auth.currentUser.email);
-      })})
+      });
+    });
   }
 
   logout() {
