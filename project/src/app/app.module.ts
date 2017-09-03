@@ -16,7 +16,7 @@ import { AuthGuard } from './auth/auth-guard.service';
 import { RequestComponent } from './offer/request/request.component';
 import { ManageComponent } from './offer/manage/manage.component';
 import { ApproveComponent } from './offer/approve/approve.component';
-import { ModalModule } from 'ng2-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
