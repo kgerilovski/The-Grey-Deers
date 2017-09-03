@@ -1,3 +1,4 @@
+import { OfferService } from './offer/offer.service';
 import { AuthService } from './auth/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,9 +13,16 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './auth/auth-guard.service';
+import { RequestComponent } from './offer/request/request.component';
+import { ManageComponent } from './offer/manage/manage.component';
+import { ApproveComponent } from './offer/approve/approve.component';
+import { ModalModule } from 'ng2-bootstrap';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'manage', component: ManageComponent, canActivate: [AuthGuard] },
+  { path: 'request', component: RequestComponent, canActivate: [AuthGuard] },
+  { path: 'approve', component: ApproveComponent, canActivate: [AuthGuard] },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent }
  ];
@@ -34,16 +42,20 @@ const appRoutes: Routes = [
     HeaderComponent,
     HomeComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    RequestComponent,
+    ManageComponent,
+    ApproveComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule,
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot()
   ],
-  providers: [AuthService, AngularFireAuth, AuthGuard],
+  providers: [AuthService, AngularFireAuth, AuthGuard, AngularFireDatabase, OfferService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
