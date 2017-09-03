@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <table class="table table-stripped table-hover">
+            <thead>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Currency</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let offer of offerList; let i=index">
+                    <td>{{ offer.name }}</td>
+                    <td>{{ offer.date }} </td>
+                    <td>{{ offer.cost }} </td>
+                    <td>{{ offer.currency }} </td>
+                    <td><button type="button" class="btn btn-warning" (click)="onRequestOffer(offer.$key)">Request</button>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
