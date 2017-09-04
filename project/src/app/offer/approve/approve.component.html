@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <table class="table table-stripped table-hover">
+            <thead>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Requested By</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let req of (request$ | async)">
+                    <td>{{ req.offer.name }} </td>
+                    <td>{{ req.offer.date }} </td>
+                    <td>{{ req.offer.cost }} </td>
+                    <td>{{ req.request.email }} </td>
+                    <td><button type="button" class="btn btn-primary" (click)="offerService.approveOffer(req)">Approve</button>
+                        <td><button type="button" class="btn btn-danger" (click)="offerService.declineOffer(req.request.$key)">Decline</button>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

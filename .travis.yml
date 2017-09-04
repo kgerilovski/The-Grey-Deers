@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+   - 6.9
+
+cache: yarn
+ 
+branches:
+   only:
+      - master
+
+before_script:
+   - cd project
+   - yarn global add firebase-tools
+   - yarn
+
+script:
+   - npm run build:prod
+
+after_success:
+   - firebase deploy --token $FIREBASE_TOKEN

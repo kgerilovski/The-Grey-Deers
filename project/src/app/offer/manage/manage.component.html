@@ -1,0 +1,97 @@
+<div class="container">
+    <div class="row">
+        <td><button type="button" class="btn btn-primary" (click)="addOfferModal.show()">Add</button></td>
+        <table class="table table-stripped table-hover">
+            <thead>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Currency</th>
+                <th>Date</th>
+                <th>Comments</th>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let offer of offerList">
+                    <td>{{ offer.name }}</td>
+                    <td>{{ offer.cost }}</td>
+                    <td>{{ offer.currency }}</td>
+                    <td>{{ offer.date }}</td>
+                    <td>{{ offer.comments }}</td>
+                    <td><button type="button" class="btn btn-success" (click)="onSelectByOfferKey(offer.$key)">Edit</button></td>
+                    <td><button type="button" class="btn btn-danger" (click)="onDeleteByOfferKey(offer.$key)">Delete</button></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div bsModal #addOfferModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <form (ngSubmit)="onAddOffer(addForm)" #addForm="ngForm">
+                <div class="modal-header">
+                    <button (click)="addOfferModal.hide()" aria-label="Close" class="close" type="button">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h5 class="modal-title text-xs-center" id="myModalLabel18">Add New Offer</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" placeholder="offer name" ngModel class="form-control" name="offerName" id="offerName">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" placeholder="cost" ngModel class="form-control" name="cost" id="cost">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="currency" ngModel class="form-control" name="currency" id="currency">
+                    </div>
+                    <div class="form-group">
+                        <input type="date" placeholder="date" ngModel class="form-control" name="date" id="date">
+                    </div>
+                    <div class="form-group">
+                        <input type="text area" placeholder="comment" ngModel class="form-control" name="comments" id="comments">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div bsModal #editOfferModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <form (ngSubmit)="onSaveOffer(editForm)" #editForm="ngForm">
+                <div class="modal-header">
+                    <button (click)="editOfferModal.hide()" aria-label="Close" class="close" type="button">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h5 class="modal-title text-xs-center" id="myModalLabel18">Edit Offer</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" placeholder="offer name" ngModel class="form-control" name="offerName" id="offerName" [value]="selectedOffer?.name">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" placeholder="cost" ngModel class="form-control" name="cost" id="cost" [value]="selectedOffer?.cost">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="currency" ngModel class="form-control" name="currency" id="currency" [value]="selectedOffer?.currency">
+                    </div>
+                    <div class="form-group">
+                        <input type="date" placeholder="date" ngModel class="form-control" name="date" id="date" [value]="selectedOffer?.date">
+                    </div>
+                    <div class="form-group">
+                        <input type="text area" placeholder="comments" ngModel class="form-control" name="comments" id="comments" [value]="selectedOffer?.comments">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
