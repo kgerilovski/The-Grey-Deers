@@ -1,11 +1,9 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Offer, Request, RequestOffer } from './offer.model';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/combineLatest';
- 
+
 @Injectable()
 export class OfferService {
 offer: Offer ;
@@ -34,7 +32,7 @@ requestOffer(request: Request) {
     this.requests.push(request);
 }
 
-getOffersByStatus(status: string) {
+getOffersByStatus(status: string): Observable<RequestOffer[]> {
     const queryList$ = this.db.list('/requests', {
         query: {
             orderByChild: 'status',
@@ -44,13 +42,14 @@ getOffersByStatus(status: string) {
     return queryList$.map(
         requestList => requestList.map(request => this.db.object('offers/' + request.offerId)
             .map((offer) => {
-                return new RequestOffer(request as Request, offer as Offer)
+                return new RequestOffer(request as Request, offer as Offer);
             }
             )))
         .flatMap(fobjs => Observable.combineLatest(fobjs));
 }
 approveOffer(req: RequestOffer) {
-    this.db.object('requests/' + req.request.$key + '/status').set('approved').then
+    // tslint:disable-next-line:no-unused-expression
+    this.db.object('requests/' + req.request.$key + '/status').set('approved').then;
     this.db.object('offers/' + req.offer.$key + '/totalOffers');
     alert('Offer Approved!');
 }

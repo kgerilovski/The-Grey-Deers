@@ -1,6 +1,6 @@
 import { OfferService } from './../offer.service';
-import { RequestOffer } from './../offer.model';
-import { Observable } from 'rxjs/Observable';
+import { Offer, Request, RequestOffer } from './../offer.model';
+import { Observable } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,9 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApproveComponent implements OnInit {
 
-  request$: Observable<RequestOffer[]> ;
+  requests$: Observable<RequestOffer[]>;
   constructor(private offerService: OfferService) {
-     this.request$ = offerService.getOffersByStatus('new');
+     this.requests$ = offerService.getOffersByStatus('new');
  }
  ngOnInit() {
  }

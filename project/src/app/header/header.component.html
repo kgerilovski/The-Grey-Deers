@@ -12,15 +12,15 @@
             <li><a routerLink="/">Home</a></li>
 
             <li><a routerLink="/manage">Manage Your Offers</a></li>
-            
+
             <li><a routerLink="/request">Request Offers</a></li>
-            
+
             <li><a routerLink="/approve">Approve Offers</a></li>
-            
+
         </ul>
 
         <ul class="nav navbar-nav navbar-right" *ngIf="authService.isAuthenticated()">
-            <li><a>{{ authService.getEmail() }}</a></li>
+            <li><a routerLink="/profile">{{ authService.getEmail() }}</a></li>
 
             <li><a href=# (click)="onSignOut()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>

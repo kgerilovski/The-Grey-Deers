@@ -5,7 +5,6 @@ export class Offer {
     public $key: string;
     public comments: string;
     public currency: string;
-     
     constructor(name: string, cost: number, date: Date, currency: string, comments: string) {
     this.name = name;
     this.cost = cost;

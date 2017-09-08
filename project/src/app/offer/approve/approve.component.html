@@ -8,7 +8,7 @@
                 <th>Requested By</th>
             </thead>
             <tbody>
-                <tr *ngFor="let req of (request$ | async)">
+                <tr *ngFor="let req of (requests$ | async)">
                     <td>{{ req.offer.name }} </td>
                     <td>{{ req.offer.date }} </td>
                     <td>{{ req.offer.cost }} </td>
