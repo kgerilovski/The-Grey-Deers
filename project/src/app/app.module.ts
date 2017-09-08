@@ -17,7 +17,8 @@ import { RequestComponent } from './offer/request/request.component';
 import { ManageComponent } from './offer/manage/manage.component';
 import { ApproveComponent } from './offer/approve/approve.component';
 import { ModalModule } from 'ngx-bootstrap';
-
+import { ToastrModule } from 'toastr-ng2';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'manage', component: ManageComponent, canActivate: [AuthGuard] },
@@ -49,11 +50,13 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule,
     FormsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [AuthService, AngularFireAuth, AuthGuard, AngularFireDatabase, OfferService],
   bootstrap: [AppComponent]

@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-
+import { ToastrService } from 'toastr-ng2';
 @Injectable()
 export class AuthService {
 
   user: Observable<firebase.User>;
   token: String;
 
-  constructor(private router: Router, private af: AngularFireAuth) {
+  constructor(private router: Router, private af: AngularFireAuth, private toastrService: ToastrService) {
     this.user = af.authState;
 
     this.user.subscribe((user) =>
@@ -19,12 +19,16 @@ export class AuthService {
     );
   }
 
+  showWarning(message: string) {
+    this.toastrService.warning(message, 'Alert!');
+  }
+
   signupUser(email: string, password: string) {
     this.af.auth.createUserWithEmailAndPassword(email, password)
     .then(() => {
       this.router.navigate(['/']);
       this.af.auth.currentUser.sendEmailVerification()
-      .then(() => alert('Please verify your email.'));
+      .then(() => this.showWarning('Please verify your email.'));
     });
   }
 
